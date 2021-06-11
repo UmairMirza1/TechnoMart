@@ -1,14 +1,20 @@
 const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+// app.use(
+//   cors({
+//     origin: "*",
+//   })
+// );
 
-app.get("/", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Root Route",
-  });
+app.get("/api/", (req, res) => {
+  res.send("Hello");
 });
+
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server started at port ${PORT}`);

@@ -24,12 +24,30 @@ const Navbar = () => {
             id="navbarSupportedContent"
           >
             <ul className="navbar-nav ml-auto">
+              <li className="nav-item active">
+                <form className="d-flex">
+                  <input
+                    className="form-control me-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
+                  <button className="btn btn-outline-success" type="submit">
+                    Search
+                  </button>
+                </form>
+              </li>
+              <li className="nav-item active">
+                <Link className="nav-link" to="/Cart">
+                  Cart
+                </Link>
+              </li>
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
+                  to="#"
                   id="navbarDropdownMenuLink"
                   role="button"
-                  to="#"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -40,21 +58,16 @@ const Navbar = () => {
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <Link className="dropdown-item" to="/SignIn">
+                    <Link className="dropdown-item" to="#">
                       Sign In
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/SignUp">
+                    <Link className="dropdown-item" to="#">
                       Sign Up
                     </Link>
                   </li>
                 </ul>
-              </li>
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">
-                  Cart
-                </Link>
               </li>
             </ul>
           </div>
