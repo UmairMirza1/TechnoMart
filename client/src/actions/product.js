@@ -3,13 +3,13 @@ import { GET_PRODUCTS } from "./types";
 
 export const getProductsAction = () => async (dispatch) => {
   try {
-    console.log("in action");
-    const response = await axios.get("https://fakestoreapi.com/products");
+    const response = await axios.get(
+      "https://fakestoreapi.com/products?limit=4"
+    );
     dispatch({
       type: GET_PRODUCTS,
       payload: response.data,
     });
-    console.log(response);
   } catch (error) {
     console.log(error);
   }

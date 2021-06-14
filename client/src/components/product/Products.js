@@ -15,10 +15,19 @@ const Products = ({ getProductsAction, products, isLoaded }) => {
       <Fragment>
         <div className="row">
           {products.map((product) => (
-            <div className="col-sm-4" key={product.id}>
-              <h1>{product.title}</h1>
-              <p>{product.description}</p>
-              <p>{product.price}</p>
+            <div className="col-sm-3" key={product.id}>
+              <div className="center">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  style={{
+                    width: "30%",
+                    height: "30%",
+                  }}
+                />
+              </div>
+              <h3 className="text">{product.title}</h3>
+              <p>SEK {product.price}</p>
             </div>
           ))}
         </div>

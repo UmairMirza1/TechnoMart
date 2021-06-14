@@ -6,6 +6,7 @@ import Landing from "./components/layout/Landing";
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
+import ProductType from "./components/product/ProductType";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route exact path="/ProductType" component={ProductType} />
         </Switch>
       </Router>
     </Provider>
