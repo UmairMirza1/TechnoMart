@@ -13,21 +13,22 @@ const Products = ({ getProductsAction, products, isLoaded }) => {
     isLoaded &&
     products !== null && (
       <Fragment>
-        <div className="row">
+        <div className="row justify-content-center text-center">
           {products.map((product) => (
-            <div className="col-sm-3" key={product.id}>
+            <div className="col-sm-3 card" key={product.id}>
               <div className="center">
                 <img
                   src={product.image}
                   alt={product.name}
                   style={{
-                    width: "30%",
-                    height: "30%",
+                    width: "50%",
+                    height: "50%",
                   }}
                 />
               </div>
-              <h3 className="text">{product.title}</h3>
+              <h3 className="tet">{product.title}</h3>
               <p>SEK {product.price}</p>
+              <button className="btn btn-primary">Add to Cart</button>
             </div>
           ))}
         </div>

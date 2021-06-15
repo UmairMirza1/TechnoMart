@@ -6,7 +6,8 @@ import Products from "../product/Products";
 const Landing = () => {
   return (
     <Fragment>
-      <ul className="nav nav-tabs justify-content-center">
+      {/* Tabs bar */}
+      <ul className="nav nav-tabs justify-content-center tabs">
         <li className="nav-item dropdown">
           <p
             className="nav-link dropdown-toggle"
@@ -92,6 +93,86 @@ const Landing = () => {
           </Link>
         </li>
       </ul>
+      {/* SlideShow */}
+      <div
+        id="carouselExampleFade"
+        className="carousel slide carousel-fade"
+        data-bs-ride="carousel"
+      >
+        <div className="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            className="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img
+              src="https://images.pexels.com/photos/7001943/pexels-photo-7001943.jpeg"
+              className="d-block w-100"
+              alt="Deal of the Week 1"
+              style={{ height: "auto", maxHeight: "500px" }}
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="https://images.pexels.com/photos/7666858/pexels-photo-7666858.jpeg"
+              className="d-block w-100"
+              alt="Deal of the Week 2"
+              style={{ height: "auto", maxHeight: "500px" }}
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="https://images.pexels.com/photos/5507152/pexels-photo-5507152.jpeg"
+              className="d-block w-100"
+              alt="Deal of the Week 3"
+              style={{ height: "auto", maxHeight: "500px" }}
+            />
+          </div>
+        </div>
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleFade"
+          data-bs-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleFade"
+          data-bs-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+      {/* Products */}
       <div className="container-fluid">
         <div className="row mt-3">
           <div className="col-sm-12">
