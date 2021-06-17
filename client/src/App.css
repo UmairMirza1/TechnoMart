@@ -15,16 +15,3 @@
   display: flex;
   justify-content: center;
 }
-
-.text {
-  text-align: center;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-}
-
-.tabs {
-  margin-top: 50px;
-}

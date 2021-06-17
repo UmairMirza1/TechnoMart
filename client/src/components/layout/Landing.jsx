@@ -7,7 +7,7 @@ const Landing = () => {
   return (
     <Fragment>
       {/* Tabs bar */}
-      <ul className="nav nav-tabs justify-content-center tabs">
+      <ul className="nav nav-tabs justify-content-center mt-5 p-1">
         <li className="nav-item dropdown">
           <p
             className="nav-link dropdown-toggle"
@@ -93,6 +93,12 @@ const Landing = () => {
           </Link>
         </li>
       </ul>
+      {/* Welcome */}
+      <div className="row justify-content-center text-center">
+        <div className="col-sm-12">
+          <h1>Welcome to TechnoMart</h1>
+        </div>
+      </div>
       {/* SlideShow */}
       <div
         id="carouselExampleFade"
@@ -177,11 +183,11 @@ const Landing = () => {
         <div className="row mt-3">
           <div className="col-sm-12">
             <div className="row justify-content-center p-3">
-              <div className="col-sm-6 text">
-                <h1>Welcome to TechnoMart</h1>
+              <div className="col-sm-6 text-center">
+                <h1>Highlights of the Day</h1>
               </div>
             </div>
-            <Products />
+            <Products limit={8} />
           </div>
         </div>
       </div>

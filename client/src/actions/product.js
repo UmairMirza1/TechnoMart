@@ -1,10 +1,10 @@
 import axios from "axios";
 import { GET_PRODUCTS } from "./types";
 
-export const getProductsAction = () => async (dispatch) => {
+export const getProductsAction = (limit) => async (dispatch) => {
   try {
     const response = await axios.get(
-      "https://fakestoreapi.com/products?limit=4"
+      `https://fakestoreapi.com/products?limit=${limit}`
     );
     dispatch({
       type: GET_PRODUCTS,

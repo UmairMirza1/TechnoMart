@@ -58,6 +58,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <hr />
         <span className="text-muted">
           Copyright © 2021 TechnoMart. All Rights Reserved.
         </span>

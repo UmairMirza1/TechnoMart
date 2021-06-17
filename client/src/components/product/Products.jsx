@@ -5,29 +5,29 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProductsAction } from "../../actions/product";
 
-const Products = ({ getProductsAction, products, isLoaded }) => {
+const Products = ({ getProductsAction, products, isLoaded, limit }) => {
   useEffect(() => {
-    getProductsAction();
-  }, [getProductsAction]);
+    getProductsAction(limit);
+  }, [getProductsAction, limit]);
   return (
     isLoaded &&
     products !== null && (
       <Fragment>
-        <div className="row justify-content-center text-center">
+        <div className="row text-center mt-1 mb-3">
           {products.map((product) => (
-            <div className="col-sm-3 card" key={product.id}>
-              <div className="center">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  style={{
-                    width: "50%",
-                    height: "50%",
-                  }}
-                />
-              </div>
-              <h3 className="tet">{product.title}</h3>
-              <p>SEK {product.price}</p>
+            <div
+              className="col-md-3 d-flex flex-column justify-content-center align-items-center card p-2"
+              key={product.id}
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                style={{ width: "200px", height: "200px" }}
+              />
+              <p className="mt-3" style={{ width: "200px", height: "50px" }}>
+                {product.title}
+              </p>
+              <p>$ {product.price}</p>
               <button className="btn btn-primary">Add to Cart</button>
             </div>
           ))}
