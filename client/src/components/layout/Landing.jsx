@@ -7,7 +7,7 @@ const Landing = () => {
   return (
     <Fragment>
       {/* Tabs bar */}
-      <ul className="nav nav-tabs justify-content-center mt-5 p-1">
+      <ul className="nav nav-tabs justify-content-center mt-5 ">
         <li className="nav-item dropdown">
           <p
             className="nav-link dropdown-toggle"
@@ -94,9 +94,11 @@ const Landing = () => {
         </li>
       </ul>
       {/* Welcome */}
-      <div className="row justify-content-center text-center">
-        <div className="col-sm-12">
-          <h1>Welcome to TechnoMart</h1>
+      <div className="container-fluid">
+        <div className="row justify-content-center text-center">
+          <div className="col-sm-12">
+            <h1>Welcome to TechnoMart</h1>
+          </div>
         </div>
       </div>
       {/* SlideShow */}
