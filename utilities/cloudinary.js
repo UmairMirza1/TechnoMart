@@ -8,12 +8,13 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-const uploadImage = async (image, preset) => {
+const uploadImage = async (image, preset, folder) => {
   try {
     const uploaded = await cloudinary.uploader.upload(
       image,
       {
         upload_preset: preset,
+        folder: `${preset}/${folder}`,
       },
       (err, result) => {
         if (err) return console.log(err);
