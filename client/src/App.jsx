@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
-import ProductType from "./components/product/ProductType";
+import Category from "./components/product/Category";
 
 // Redux
 import { Provider } from "react-redux";
@@ -16,7 +16,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/ProductType" component={ProductType} />
+          <Route exact path="/Category/:category" component={Category} />
         </Switch>
         <Footer />
       </Router>

@@ -1,98 +1,11 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-import Products from "../product/Products";
+// import Products from "../product/Products";
 
 const Landing = () => {
   return (
     <Fragment>
-      {/* Tabs bar */}
-      <ul className="nav nav-tabs justify-content-center mt-5 ">
-        <li className="nav-item dropdown">
-          <p
-            className="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            role="button"
-            aria-expanded="false"
-          >
-            Components
-          </p>
-          <ul className="dropdown-menu">
-            <li>
-              <Link className="dropdown-item" to="/ProductType">
-                Processors
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/GraphicsCards">
-                Graphics Cards
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/Motherboards">
-                Motherboards
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/RAM">
-                RAM
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/Storage">
-                Storage
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/PowerSupplies">
-                Power Supplies
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="nav-item dropdown">
-          <p
-            className="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            role="button"
-            aria-expanded="false"
-          >
-            Accessories
-          </p>
-          <ul className="dropdown-menu">
-            <li>
-              <Link className="dropdown-item" to="/Monitors">
-                Monitors
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/Speakers">
-                Speakers
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/Mice">
-                Mice
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/Keyboards">
-                Keyboards
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/Laptops">
-            Laptops
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/Consoles">
-            Consoles
-          </Link>
-        </li>
-      </ul>
       {/* Welcome */}
       <div className="container-fluid">
         <div className="row justify-content-center text-center">
@@ -189,7 +102,7 @@ const Landing = () => {
                 <h1>Highlights of the Day</h1>
               </div>
             </div>
-            <Products limit={8} />
+            {/* <Products /> */}
           </div>
         </div>
       </div>

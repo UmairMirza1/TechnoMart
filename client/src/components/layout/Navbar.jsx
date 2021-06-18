@@ -73,6 +73,166 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <ul className="nav nav-tabs justify-content-center mt-5 ">
+        <li className="nav-item dropdown">
+          <p
+            className="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Components
+          </p>
+          <ul className="dropdown-menu">
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/Processors",
+                  state: "Processors",
+                }}
+              >
+                Processors
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/GraphicsCards",
+                  state: "Graphics Cards",
+                }}
+              >
+                Graphics Cards
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/Motherboards",
+                  state: "Motherboards",
+                }}
+              >
+                Motherboards
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/RAM",
+                  state: "RAM",
+                }}
+              >
+                RAM
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/Storage",
+                  state: "Storage",
+                }}
+              >
+                Storage
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/PowerSupplies",
+                  state: "Power Supplies",
+                }}
+              >
+                Power Supplies
+              </Link>
+            </li>
+          </ul>
+        </li>
+        <li className="nav-item dropdown">
+          <p
+            className="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            Accessories
+          </p>
+          <ul className="dropdown-menu">
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/Monitors",
+                  state: "Monitors",
+                }}
+              >
+                Monitors
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/Speakers",
+                  state: "Speakers",
+                }}
+              >
+                Speakers
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/Mice",
+                  state: "Mice",
+                }}
+              >
+                Mice
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/Keyboards",
+                  state: "Keyboards",
+                }}
+              >
+                Keyboards
+              </Link>
+            </li>
+          </ul>
+        </li>
+        <li className="nav-item mt-1">
+          <Link
+            className="dropdown-item"
+            to={{
+              pathname: "/Category/Laptops",
+              state: "Laptops",
+            }}
+            style={{ color: "blue" }}
+          >
+            Laptops
+          </Link>
+        </li>
+        <li className="nav-item mt-1">
+          <Link
+            className="dropdown-item"
+            to={{
+              pathname: "/Category/Consoles",
+              state: "Consoles",
+            }}
+            style={{ color: "blue" }}
+          >
+            Consoles
+          </Link>
+        </li>
+      </ul>
     </Fragment>
   );
 };

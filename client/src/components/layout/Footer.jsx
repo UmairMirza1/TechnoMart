@@ -44,17 +44,41 @@ const Footer = () => {
             <h4>
               <b>Follow Us</b>
             </h4>
-            <div className="row mb-4">
-              <i className="fab fa-facebook-square"></i>
+            <div className="row mb-3">
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-facebook-square"></i>
+              </a>
             </div>
-            <div className="row mb-4">
-              <i className="fab fa-twitter-square"></i>
+            <div className="row mb-3">
+              <a
+                href="https://www.twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-twitter-square"></i>
+              </a>
             </div>
-            <div className="row mb-4">
-              <i className="fab fa-instagram-square"></i>
+            <div className="row mb-3">
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-instagram-square"></i>
+              </a>
             </div>
-            <div className="row mb-4">
-              <i className="fab fa-linkedin-square"></i>
+            <div className="row mb-3">
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-linkedin-square"></i>
+              </a>
             </div>
           </div>
         </div>

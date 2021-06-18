@@ -8,10 +8,3 @@
 .dropdown-menu {
   min-width: 0;
 }
-
-.sidebar {
-  background-color: blanchedalmond;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-}

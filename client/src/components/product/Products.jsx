@@ -3,42 +3,59 @@ import PropTypes from "prop-types";
 
 // Redux
 import { connect } from "react-redux";
-import { getProductsAction } from "../../actions/product";
+import { getCategoryProducts } from "../../actions/product";
 
-const Products = ({ getProductsAction, products, isLoaded, limit }) => {
+const Products = ({ getCategoryProducts, products, isLoaded, category }) => {
   useEffect(() => {
-    getProductsAction(limit);
-  }, [getProductsAction, limit]);
-  return (
-    isLoaded &&
-    products !== null && (
-      <Fragment>
-        <div className="row text-center mt-1 mb-3">
-          {products.map((product) => (
-            <div
-              className="col-md-3 d-flex flex-column justify-content-center align-items-center card p-2"
-              key={product.id}
-            >
-              <img
-                src={product.image}
-                alt={product.title}
-                style={{ width: "200px", height: "200px" }}
-              />
-              <p className="mt-3" style={{ width: "200px", height: "50px" }}>
-                {product.title}
-              </p>
-              <p>$ {product.price}</p>
-              <button className="btn btn-primary">Add to Cart</button>
-            </div>
-          ))}
-        </div>
-      </Fragment>
-    )
+    getCategoryProducts(category);
+  }, [getCategoryProducts, category]);
+  return isLoaded && products === null ? (
+    <Fragment>
+      <div className="row text-center p-3">
+        <p>Loading products...</p>
+      </div>
+    </Fragment>
+  ) : (
+    <Fragment>
+      {products.length === 0 ? (
+        <Fragment>
+          <div className="row p-3">
+            <p>There are no products in this category.</p>
+          </div>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <div className="row text-center p-3">
+            {products.map((product) => (
+              <div
+                className="col-md-3 d-flex flex-column justify-content-center align-items-center card p-2"
+                key={product._id}
+              >
+                <img
+                  src={product.image.url}
+                  alt={product.title}
+                  style={{
+                    width: "200px",
+                    height: "200px",
+                    borderRadius: "5px",
+                  }}
+                />
+                <p className="mt-3" style={{ width: "200px", height: "50px" }}>
+                  {product.title}
+                </p>
+                <p>$ {product.price}</p>
+                <button className="btn btn-primary">Add to Cart</button>
+              </div>
+            ))}
+          </div>
+        </Fragment>
+      )}
+    </Fragment>
   );
 };
 
 Products.propTypes = {
-  getProductsAction: PropTypes.func.isRequired,
+  getCategoryProducts: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
   isLoaded: PropTypes.bool.isRequired,
 };
@@ -48,4 +65,4 @@ const stateToProps = (state) => ({
   isLoaded: state.product.isLoaded,
 });
 
-export default connect(stateToProps, { getProductsAction })(Products);
+export default connect(stateToProps, { getCategoryProducts })(Products);

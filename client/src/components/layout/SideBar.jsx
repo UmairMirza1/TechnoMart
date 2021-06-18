@@ -3,35 +3,25 @@ import { Fragment } from "react";
 const SideBar = () => {
   return (
     <Fragment>
-      <div className="cat">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-sm-12">
-            <h4>Categories</h4>
+            <h4>Filters</h4>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <p>Monitor</p>
+            <p>Sort</p>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <p>Speaker</p>
+            <p>Range</p>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <p>Mouse</p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12">
-            <p>Keyboard</p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12">
-            <p>Chairs</p>
+            <p>Brand</p>
           </div>
         </div>
       </div>

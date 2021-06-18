@@ -5,6 +5,11 @@ require("dotenv").config();
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 connectDB();
 
 app.use(express.json({ extended: false, limit: "50mb" }));

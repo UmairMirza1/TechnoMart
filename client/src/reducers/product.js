@@ -1,4 +1,4 @@
-import { GET_PRODUCTS } from "../actions/types";
+import { CLEAR_PRODUCTS, GET_PRODUCTS } from "../actions/types";
 
 const initialState = {
   products: [],
@@ -12,6 +12,12 @@ const products = (state = initialState, action) => {
       return {
         ...state,
         products: payload,
+        isLoaded: true,
+      };
+    case CLEAR_PRODUCTS:
+      return {
+        ...state,
+        products: [],
         isLoaded: true,
       };
     default:
