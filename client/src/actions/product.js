@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CLEAR_PRODUCTS, GET_PRODUCTS } from "./types";
+import { CLEAR_PRODUCTS, CLICK_CATEGORY, GET_PRODUCTS } from "./types";
 
 export const getProductsAction = (limit) => async (dispatch) => {
   try {
@@ -42,4 +42,10 @@ export const getCategoryProducts = (category) => async (dispatch) => {
       type: CLEAR_PRODUCTS,
     });
   }
+};
+
+export const clickCategory = () => (dispatch) => {
+  dispatch({
+    type: CLICK_CATEGORY,
+  });
 };

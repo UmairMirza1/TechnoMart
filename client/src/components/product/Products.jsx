@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // Redux
 import { connect } from "react-redux";
-import { getCategoryProducts } from "../../actions/product";
+import { getCategoryProducts, clickCategory } from "../../actions/product";
 
 const Products = ({
   getCategoryProducts,
@@ -12,17 +12,20 @@ const Products = ({
   isSorted,
   isPriceAscending,
   isNameAscending,
+  isClicked,
   category,
 }) => {
   useEffect(() => {
-    if (!isSorted) getCategoryProducts(category);
+    if (!isClicked && !isSorted) getCategoryProducts(category);
   }, [
     getCategoryProducts,
     category,
     isSorted,
     isPriceAscending,
     isNameAscending,
+    isClicked
   ]);
+  
   return !isLoaded || products === null ? (
     <Fragment>
       <div className="row p-3">
@@ -75,6 +78,8 @@ Products.propTypes = {
   isSorted: PropTypes.bool.isRequired,
   isPriceAscending: PropTypes.bool.isRequired,
   isNameAscending: PropTypes.bool.isRequired,
+  isInRange: PropTypes.bool.isRequired,
+  isClicked: PropTypes.bool.isRequired,
 };
 
 const stateToProps = (state) => ({
@@ -83,6 +88,8 @@ const stateToProps = (state) => ({
   isSorted: state.product.isSorted,
   isPriceAscending: state.product.isPriceAscending,
   isNameAscending: state.product.isNameAscending,
+  isInRange: state.product.isInRange,
+  isClicked: state.product.isClicked
 });
 
-export default connect(stateToProps, { getCategoryProducts })(Products);
+export default connect(stateToProps, { getCategoryProducts, clickCategory })(Products);

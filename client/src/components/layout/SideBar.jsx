@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 // Redux
 import { connect } from "react-redux";
-import { sortPriceAction, sortNameAction } from "../../actions/filter";
+import { sortPriceAction, sortNameAction, getRangeAction } from "../../actions/filter";
 
-const SideBar = ({ sortPriceAction, sortNameAction, products }) => {
+const SideBar = ({ sortPriceAction, sortNameAction, getRangeAction, products }) => {
   const [price, setPrice] = useState({
     text: "Price Rising",
     ascending: true,
@@ -16,14 +16,14 @@ const SideBar = ({ sortPriceAction, sortNameAction, products }) => {
     ascending: true,
   });
 
-  // const [range, setRange] = useState({
-  //   starting: "",
-  //   ending: ""
-  // })
+  const [range, setRange] = useState({
+    starting: "",
+    ending: ""
+  })
 
-  // const getRange = (range) => {
-
-  // }
+  const rangeChange = (e) => {
+    setRange({...range, [e.target.name]: e.target.value})
+  }
 
   const sortPrice = () => {
     sortPriceAction(products, price.ascending);
@@ -40,6 +40,28 @@ const SideBar = ({ sortPriceAction, sortNameAction, products }) => {
       ascending: !name.ascending,
     });
   };
+
+  const getRange = () => {
+    if (range.starting === "") {
+      setRange({
+        ...range,
+        starting: "0",
+      })
+    }
+    if (range.ending === "") {
+      var max = 0;
+      products.forEach((product) => {if (product.price > max) max = product.price})
+      setRange({
+        ...range,
+        ending: max.toString()
+      })
+    }
+    getRangeAction(products, range.starting, range.ending)
+    setRange({
+        starting: "",
+        ending: ""
+      })
+  }
 
   return (
     <Fragment>
@@ -69,11 +91,34 @@ const SideBar = ({ sortPriceAction, sortNameAction, products }) => {
           </div>
         </div>
         <div className="row">
+          <div className="col-sm-6">
+            <input type="text"
+            className="text-box"
+            name="starting"
+            value={range.starting}
+            onChange={(e) => rangeChange(e)}
+            />
+          </div>
+          <div className="col-sm-6">
+            <input type="text"
+            className="text-box"
+            name="ending"
+            value={range.ending}
+            onChange={(e) => rangeChange(e)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <button onClick={getRange} className="btn btn-success">Search</button>
+          </div>
+        </div>
+        <div className="row">
           <div className="col-sm-12">
             <p>Brand</p>
           </div>
+          </div>
         </div>
-      </div>
     </Fragment>
   );
 };
@@ -81,6 +126,7 @@ const SideBar = ({ sortPriceAction, sortNameAction, products }) => {
 SideBar.propTypes = {
   sortPriceAction: PropTypes.func.isRequired,
   sortNameAction: PropTypes.func.isRequired,
+  getRangeAction: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
 };
 
@@ -88,6 +134,6 @@ const stateToProps = (state) => ({
   products: state.product.products,
 });
 
-export default connect(stateToProps, { sortPriceAction, sortNameAction })(
+export default connect(stateToProps, { sortPriceAction, sortNameAction, getRangeAction })(
   SideBar
 );

@@ -1,5 +1,6 @@
 import {
   CLEAR_PRODUCTS,
+  CLICK_CATEGORY,
   GET_PRODUCTS,
   GET_RANGE,
   SORT_NAME_ASCENDING,
@@ -15,6 +16,7 @@ const initialState = {
   isPriceAscending: false,
   isNameAscending: false,
   isInRange: false,
+  isClicked: false,
 };
 
 const products = (state = initialState, action) => {
@@ -91,8 +93,12 @@ const products = (state = initialState, action) => {
             product.price >= payload.starting && product.price <= payload.ending
         ),
         isLoaded: true,
-        isSorted: true,
         isInRange: true,
+      };
+    case CLICK_CATEGORY:
+      return {
+        ...state,
+        isClicked: true,
       };
     case CLEAR_PRODUCTS:
       return {
@@ -100,6 +106,9 @@ const products = (state = initialState, action) => {
         products: [],
         isLoaded: true,
         isSorted: false,
+        isNameAscending: false,
+        isPriceAscending: false,
+        isInRange: false,
       };
     default:
       return state;

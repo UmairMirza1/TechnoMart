@@ -1,6 +1,18 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-const Navbar = () => {
+import PropTypes from "prop-types";
+
+// Redux
+import {connect} from "react-redux";
+import { getCategoryProducts, clickCategory } from "../../actions/product";
+const Navbar = ({getCategoryProducts, clickCategory}) => {
+
+  const onClick = (category) => {
+    console.log("Clicked")
+    getCategoryProducts(category);
+    clickCategory();
+  }
+
   return (
     <Fragment>
       <nav className="navbar navbar-expand-sm navbar-light bg-light fixed-top">
@@ -84,7 +96,7 @@ const Navbar = () => {
             Components
           </p>
           <ul className="dropdown-menu">
-            <li>
+            <li onClick={(e) => onClick("Processors")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -95,7 +107,7 @@ const Navbar = () => {
                 Processors
               </Link>
             </li>
-            <li>
+            <li onClick={(e) => onClick("Graphics Cards")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -106,7 +118,7 @@ const Navbar = () => {
                 Graphics Cards
               </Link>
             </li>
-            <li>
+            <li onClick={(e) => onClick("Motherboards")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -117,7 +129,7 @@ const Navbar = () => {
                 Motherboards
               </Link>
             </li>
-            <li>
+            <li onClick={(e) => onClick("RAM")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -128,7 +140,7 @@ const Navbar = () => {
                 RAM
               </Link>
             </li>
-            <li>
+            <li onClick={(e) => onClick("Storage")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -139,7 +151,7 @@ const Navbar = () => {
                 Storage
               </Link>
             </li>
-            <li>
+            <li onClick={(e) => onClick("Power Supplies")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -162,7 +174,7 @@ const Navbar = () => {
             Accessories
           </p>
           <ul className="dropdown-menu">
-            <li>
+            <li onClick={(e) => onClick("Monitors")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -173,7 +185,7 @@ const Navbar = () => {
                 Monitors
               </Link>
             </li>
-            <li>
+            <li onClick={(e) => onClick("Speakers")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -184,7 +196,7 @@ const Navbar = () => {
                 Speakers
               </Link>
             </li>
-            <li>
+            <li onClick={(e) => onClick("Mice")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -195,7 +207,7 @@ const Navbar = () => {
                 Mice
               </Link>
             </li>
-            <li>
+            <li onClick={(e) => onClick("Keyboards")}>
               <Link
                 className="dropdown-item"
                 to={{
@@ -208,7 +220,7 @@ const Navbar = () => {
             </li>
           </ul>
         </li>
-        <li className="nav-item mt-1">
+        <li className="nav-item mt-1" onClick={(e) => onClick("Laptops")}>
           <Link
             className="dropdown-item"
             to={{
@@ -220,7 +232,7 @@ const Navbar = () => {
             Laptops
           </Link>
         </li>
-        <li className="nav-item mt-1">
+        <li className="nav-item mt-1" onClick={(e) => onClick("Consoles")}>
           <Link
             className="dropdown-item"
             to={{
@@ -237,4 +249,9 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  getCategoryProducts: PropTypes.func.isRequired,
+  clickCategory: PropTypes.func.isRequired,
+}
+
+export default connect(null, {getCategoryProducts, clickCategory})(Navbar);
