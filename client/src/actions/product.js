@@ -1,5 +1,11 @@
 import axios from "axios";
-import { CLEAR_PRODUCTS, CLICK_CATEGORY, GET_PRODUCTS } from "./types";
+import {
+  CLEAR_PRODUCTS,
+  CLEAR_PRODUCT,
+  CLICK_CATEGORY,
+  GET_PRODUCTS,
+  GET_PRODUCT,
+} from "./types";
 
 export const getProductsAction = (limit) => async (dispatch) => {
   try {
@@ -17,7 +23,7 @@ export const getProductsAction = (limit) => async (dispatch) => {
 
 export const getTechnoMartProducts = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:5000/api/product/");
+    const response = await axios.get("http://localhost:5000/api/product/all");
     dispatch({
       type: GET_PRODUCTS,
       payload: response.data.payload,
@@ -40,6 +46,23 @@ export const getCategoryProducts = (category) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: CLEAR_PRODUCTS,
+    });
+  }
+};
+
+export const getSingleProduct = (id) => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/api/product/single/${id}`
+    );
+    dispatch({
+      type: GET_PRODUCT,
+      payload: response.data.payload,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: CLEAR_PRODUCT,
     });
   }
 };

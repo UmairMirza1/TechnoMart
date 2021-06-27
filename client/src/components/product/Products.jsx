@@ -1,4 +1,5 @@
 import { Fragment, useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // Redux
@@ -48,6 +49,7 @@ const Products = ({
                 className="col-md-3 d-flex flex-column justify-content-center align-items-center card p-2"
                 key={product._id}
               >
+                <Link to={`/Product/${product._id}`}>
                 <img
                   src={product.image.url}
                   alt={product.title}
@@ -57,9 +59,12 @@ const Products = ({
                     borderRadius: "5px",
                   }}
                 />
+                </Link>
+                <Link to={`/Product/${product._id}`} style={{textDecoration: "none"}}>
                 <p className="mt-3" style={{ width: "200px", height: "50px" }}>
                   {product.title}
                 </p>
+                </Link>
                 <p>$ {product.price}</p>
                 <button className="btn btn-primary">Add to Cart</button>
               </div>

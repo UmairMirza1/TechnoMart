@@ -57,7 +57,7 @@ router.post("/quantity", async (req, res) => {
   );
 });
 
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     const products = await Product.find().sort({ date: -1 });
 
@@ -72,6 +72,19 @@ router.get("/", async (req, res) => {
       "All products fetched successfully.",
       products
     );
+  } catch (error) {
+    console.log(error);
+    return response(res, 500, false, "Internal server error occurred.");
+  }
+});
+
+router.get("/single/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+
+    if (!product) return response(res, 401, false, "Product not found.");
+
+    return response(res, 200, true, "Product fetched successfully.", product);
   } catch (error) {
     console.log(error);
     return response(res, 500, false, "Internal server error occurred.");

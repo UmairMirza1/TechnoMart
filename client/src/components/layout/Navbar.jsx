@@ -8,7 +8,6 @@ import { getCategoryProducts, clickCategory } from "../../actions/product";
 const Navbar = ({getCategoryProducts, clickCategory}) => {
 
   const onClick = (category) => {
-    console.log("Clicked")
     getCategoryProducts(category);
     clickCategory();
   }

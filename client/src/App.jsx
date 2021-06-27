@@ -4,6 +4,7 @@ import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
 import Category from "./components/product/Category";
+import SingleProduct from "./components/product/SingleProduct";
 
 // Redux
 import { Provider } from "react-redux";
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/Category/:category" component={Category} />
+          <Route exact path="/Product/:id" component={SingleProduct} />
         </Switch>
         <Footer />
       </Router>

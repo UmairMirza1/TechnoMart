@@ -1,6 +1,8 @@
 import {
+  CLEAR_PRODUCT,
   CLEAR_PRODUCTS,
   CLICK_CATEGORY,
+  GET_PRODUCT,
   GET_PRODUCTS,
   GET_RANGE,
   SORT_NAME_ASCENDING,
@@ -10,6 +12,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
+  product: null,
   products: [],
   isLoaded: false,
   isSorted: false,
@@ -22,6 +25,13 @@ const initialState = {
 const products = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case GET_PRODUCT:
+      return {
+        ...state,
+        product: payload,
+        products: [],
+        isLoaded: true,
+      };
     case GET_PRODUCTS:
       return {
         ...state,
@@ -100,9 +110,11 @@ const products = (state = initialState, action) => {
         ...state,
         isClicked: true,
       };
+    case CLEAR_PRODUCT:
     case CLEAR_PRODUCTS:
       return {
         ...state,
+        product: null,
         products: [],
         isLoaded: true,
         isSorted: false,
