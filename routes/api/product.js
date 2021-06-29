@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const { response } = require("../../utilities/serverHelper");
-const { uploadImage } = require("../../utilities/cloudinary");
+const {
+  response,
+  uploadToCloudinary,
+} = require("../../utilities/serverHelper");
 
 const Product = require("../../models/Product");
 
@@ -14,15 +16,14 @@ router.post("/", async (req, res) => {
     createProduct.price = req.body.price;
     createProduct.category = req.body.category;
     createProduct.quantity = req.body.quantity;
+    createProduct.images = [];
 
-    const image = await uploadImage(
-      req.body.image,
-      "TechnoMart",
-      req.body.category
+    const promiseArray = req.body.images.map((image) =>
+      uploadToCloudinary(req, image)
     );
-    createProduct.image = {};
-    createProduct.image.publicID = image.public_id;
-    createProduct.image.url = image.secure_url;
+    const result = await Promise.all(promiseArray);
+
+    createProduct.images = createProduct.images.concat(result);
 
     let product = new Product(createProduct);
     await product.save();

@@ -24,9 +24,9 @@ const Products = ({
     isSorted,
     isPriceAscending,
     isNameAscending,
-    isClicked
+    isClicked,
   ]);
-  
+
   return !isLoaded || products === null ? (
     <Fragment>
       <div className="row p-3">
@@ -50,20 +50,26 @@ const Products = ({
                 key={product._id}
               >
                 <Link to={`/Product/${product._id}`}>
-                <img
-                  src={product.image.url}
-                  alt={product.title}
-                  style={{
-                    width: "200px",
-                    height: "200px",
-                    borderRadius: "5px",
-                  }}
-                />
+                  <img
+                    src={product.images[0].url}
+                    alt={product.title}
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      borderRadius: "5px",
+                    }}
+                  />
                 </Link>
-                <Link to={`/Product/${product._id}`} style={{textDecoration: "none"}}>
-                <p className="mt-3" style={{ width: "200px", height: "50px" }}>
-                  {product.title}
-                </p>
+                <Link
+                  to={`/Product/${product._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <p
+                    className="mt-3"
+                    style={{ width: "200px", height: "50px" }}
+                  >
+                    {product.title}
+                  </p>
                 </Link>
                 <p>$ {product.price}</p>
                 <button className="btn btn-primary">Add to Cart</button>
@@ -94,7 +100,9 @@ const stateToProps = (state) => ({
   isPriceAscending: state.product.isPriceAscending,
   isNameAscending: state.product.isNameAscending,
   isInRange: state.product.isInRange,
-  isClicked: state.product.isClicked
+  isClicked: state.product.isClicked,
 });
 
-export default connect(stateToProps, { getCategoryProducts, clickCategory })(Products);
+export default connect(stateToProps, { getCategoryProducts, clickCategory })(
+  Products
+);

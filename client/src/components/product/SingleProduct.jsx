@@ -22,7 +22,7 @@ const SingleProduct = ({ getSingleProduct, product, isLoaded, match }) => {
             <div className="row" style={{ height: "50%" }}>
               <div className="col-sm-12">
                 <img
-                  src={product.image.url}
+                  src={product.images[0].url}
                   alt={product.title}
                   style={{
                     width: "50%",
@@ -35,39 +35,20 @@ const SingleProduct = ({ getSingleProduct, product, isLoaded, match }) => {
             </div>
             <div className="row" style={{ height: "50%" }}>
               <div className="col-sm-12">
-                <img
-                  src={product.image.url}
-                  alt={product.title}
-                  style={{
-                    width: "25%",
-                    height: "auto",
-                    maxHeight: "25%",
-                    borderRadius: "5px",
-                    marginRight: "5px",
-                  }}
-                />
-                <img
-                  src={product.image.url}
-                  alt={product.title}
-                  style={{
-                    width: "25%",
-                    height: "auto",
-                    maxHeight: "25%",
-                    borderRadius: "5px",
-                    marginRight: "5px",
-                  }}
-                />
-                <img
-                  src={product.image.url}
-                  alt={product.title}
-                  style={{
-                    width: "25%",
-                    height: "auto",
-                    maxHeight: "25%",
-                    borderRadius: "5px",
-                    marginRight: "5px",
-                  }}
-                />
+                {product.images.map((image) => (
+                  <img
+                    key={image._id}
+                    src={image.url}
+                    alt={product.title}
+                    style={{
+                      width: "25%",
+                      height: "auto",
+                      maxHeight: "25%",
+                      borderRadius: "5px",
+                      marginRight: "5px",
+                    }}
+                  />
+                ))}
               </div>
             </div>
           </div>
