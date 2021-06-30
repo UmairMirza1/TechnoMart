@@ -5,9 +5,11 @@ import PropTypes from "prop-types";
 // Redux
 import { connect } from "react-redux";
 import { getCategoryProducts, clickCategory } from "../../actions/product";
+import { addToCart } from "../../actions/cart";
 
 const Products = ({
   getCategoryProducts,
+  addToCart,
   products,
   isLoaded,
   isSorted,
@@ -72,7 +74,12 @@ const Products = ({
                   </p>
                 </Link>
                 <p>$ {product.price}</p>
-                <button className="btn btn-primary">Add to Cart</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => addToCart(product._id)}
+                >
+                  Add to Cart
+                </button>
               </div>
             ))}
           </div>
@@ -84,6 +91,7 @@ const Products = ({
 
 Products.propTypes = {
   getCategoryProducts: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
   isLoaded: PropTypes.bool.isRequired,
   isSorted: PropTypes.bool.isRequired,
@@ -103,6 +111,8 @@ const stateToProps = (state) => ({
   isClicked: state.product.isClicked,
 });
 
-export default connect(stateToProps, { getCategoryProducts, clickCategory })(
-  Products
-);
+export default connect(stateToProps, {
+  getCategoryProducts,
+  clickCategory,
+  addToCart,
+})(Products);

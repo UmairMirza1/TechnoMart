@@ -10,5 +10,26 @@
 }
 
 .text-box {
-  width: 100%
+  width: 100%;
+}
+
+.product-image {
+  margin-bottom: 150px;
+}
+
+.product-image img {
+  width: 300px;
+  height: 250px;
+}
+
+.product-image-list {
+  height: 100px;
+}
+
+.product-image-list img {
+  width: 100px;
+  height: 100px;
+  margin-right: 5px;
+  padding-top: 50px;
+  cursor: pointer;
 }

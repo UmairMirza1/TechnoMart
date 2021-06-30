@@ -8,3 +8,5 @@ export const SORT_NAME_ASCENDING = "SORT_NAME_ASCENDING";
 export const SORT_NAME_DESCENDING = "SORT_NAME_DESCENDING";
 export const GET_RANGE = "GET_RANGE";
 export const CLICK_CATEGORY = "CLICK_CATEGORY";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const UPDATE_CART = "UPDATE_CART";
