@@ -19,6 +19,17 @@ const SingleProduct = ({
 
   const [preview, setPreview] = useState(false);
 
+  const cartClick = (product) => {
+    const cartProduct = {
+      id: product._id,
+      title: product.title,
+      image: product.images[0].url,
+      price: product.price,
+      maxQuantity: product.quantity,
+    };
+    addToCart(cartProduct);
+  };
+
   return !isLoaded || product === null ? (
     <Fragment>
       <h1>Product loading...</h1>
@@ -57,7 +68,7 @@ const SingleProduct = ({
             <p>$ {product.price}</p>
             <button
               className="btn btn-primary"
-              onClick={() => addToCart(product._id)}
+              onClick={() => cartClick(product)}
             >
               Add to Cart
             </button>

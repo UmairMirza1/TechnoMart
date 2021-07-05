@@ -33,3 +33,10 @@
   padding-top: 50px;
   cursor: pointer;
 }
+
+.total {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+}

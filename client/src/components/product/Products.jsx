@@ -29,6 +29,17 @@ const Products = ({
     isClicked,
   ]);
 
+  const cartClick = (product) => {
+    const cartProduct = {
+      id: product._id,
+      title: product.title,
+      image: product.images[0].url,
+      price: product.price,
+      maxQuantity: product.quantity,
+    };
+    addToCart(cartProduct);
+  };
+
   return !isLoaded || products === null ? (
     <Fragment>
       <div className="row p-3">
@@ -76,7 +87,7 @@ const Products = ({
                 <p>$ {product.price}</p>
                 <button
                   className="btn btn-primary"
-                  onClick={() => addToCart(product._id)}
+                  onClick={() => cartClick(product)}
                 >
                   Add to Cart
                 </button>
