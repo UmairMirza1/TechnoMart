@@ -1,9 +1,15 @@
-import { Fragment } from "react";
-// import { Link } from "react-router-dom";
+import { Fragment, useEffect } from "react";
+import PropTypes from "prop-types";
+import Products from "../product/Products";
 
-// import Products from "../product/Products";
+//Redux
+import { connect } from "react-redux";
+import { highlightProducts } from "../../actions/product";
 
-const Landing = () => {
+const Landing = ({ highlightProducts }) => {
+  useEffect(() => {
+    highlightProducts();
+  }, [highlightProducts]);
   return (
     <Fragment>
       {/* Welcome */}
@@ -102,6 +108,7 @@ const Landing = () => {
                 <h1>Highlights of the Day</h1>
               </div>
             </div>
+            <Products />
             {/* <Products /> */}
           </div>
         </div>
@@ -110,4 +117,8 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  highlightProducts: PropTypes.func.isRequired,
+};
+
+export default connect(null, { highlightProducts })(Landing);

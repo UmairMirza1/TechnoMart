@@ -36,7 +36,7 @@ export const getTechnoMartProducts = () => async (dispatch) => {
 export const getCategoryProducts = (category) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/product/${category}`
+      `http://localhost:5000/api/product/category/${category}`
     );
     dispatch({
       type: GET_PRODUCTS,
@@ -70,6 +70,23 @@ export const searchProducts = (term) => async (dispatch) => {
   try {
     const response = await axios.get(
       `http://localhost:5000/api/product/search/${term}`
+    );
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: response.data.payload,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: CLEAR_PRODUCT,
+    });
+  }
+};
+
+export const highlightProducts = () => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:5000/api/product/highlights"
     );
     dispatch({
       type: GET_PRODUCTS,

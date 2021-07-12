@@ -92,7 +92,7 @@ router.get("/single/:id", async (req, res) => {
   }
 });
 
-router.get("/:category", async (req, res) => {
+router.get("/category/:category", async (req, res) => {
   try {
     const products = await Product.find({ category: req.params.category }).sort(
       {
@@ -139,6 +139,22 @@ router.get("/search/:term", async (req, res) => {
       200,
       true,
       `All '${req.params.term}' named products fetched successfully.`,
+      products
+    );
+  } catch (error) {
+    console.log(error);
+    return response(res, 500, false, "Internal server error occurred.");
+  }
+});
+
+router.get("/highlights", async (req, res) => {
+  try {
+    const products = await Product.aggregate().sample(4);
+    return response(
+      res,
+      200,
+      true,
+      `Highlights fetched successfully.`,
       products
     );
   } catch (error) {
