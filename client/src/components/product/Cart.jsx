@@ -6,9 +6,7 @@ import { connect } from "react-redux";
 import { removeFromCart, updateQuantity } from "../../actions/cart";
 
 const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
-  return products.length === 0 ? (
-    <Fragment>Cart is empty.</Fragment>
-  ) : (
+  return (
     <Fragment>
       <div className="container-fluid">
         <h1 className="text-center">Cart</h1>

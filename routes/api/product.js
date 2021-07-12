@@ -117,4 +117,34 @@ router.get("/:category", async (req, res) => {
   }
 });
 
+router.get("/search/:term", async (req, res) => {
+  try {
+    const products = await Product.find({
+      title: { $regex: req.params.term, $options: "i" },
+    }).sort({
+      date: -1,
+    });
+
+    if (products.length === 0) {
+      return response(
+        res,
+        404,
+        false,
+        `No products named ${req.params.term} found.`
+      );
+    }
+
+    return response(
+      res,
+      200,
+      true,
+      `All '${req.params.term}' named products fetched successfully.`,
+      products
+    );
+  } catch (error) {
+    console.log(error);
+    return response(res, 500, false, "Internal server error occurred.");
+  }
+});
+
 module.exports = router;

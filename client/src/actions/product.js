@@ -66,6 +66,22 @@ export const getSingleProduct = (id) => async (dispatch) => {
     });
   }
 };
+export const searchProducts = (term) => async (dispatch) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/api/product/search/${term}`
+    );
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: response.data.payload,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: CLEAR_PRODUCT,
+    });
+  }
+};
 
 export const clickCategory = () => (dispatch) => {
   dispatch({

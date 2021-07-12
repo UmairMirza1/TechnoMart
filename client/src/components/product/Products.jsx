@@ -4,10 +4,15 @@ import PropTypes from "prop-types";
 
 // Redux
 import { connect } from "react-redux";
-import { getCategoryProducts, clickCategory } from "../../actions/product";
+import {
+  searchProducts,
+  getCategoryProducts,
+  clickCategory,
+} from "../../actions/product";
 import { addToCart } from "../../actions/cart";
 
 const Products = ({
+  searchProducts,
   getCategoryProducts,
   addToCart,
   products,
@@ -17,16 +22,23 @@ const Products = ({
   isNameAscending,
   isClicked,
   category,
+  isSearch,
+  searchTerm,
 }) => {
   useEffect(() => {
+    console.log("Called");
+    // if (!isClicked && !isSorted && isSearch) searchProducts(searchTerm);
     if (!isClicked && !isSorted) getCategoryProducts(category);
   }, [
+    searchProducts,
     getCategoryProducts,
     category,
     isSorted,
     isPriceAscending,
     isNameAscending,
     isClicked,
+    isSearch,
+    searchTerm,
   ]);
 
   const cartClick = (product) => {
@@ -101,6 +113,7 @@ const Products = ({
 };
 
 Products.propTypes = {
+  searchProducts: PropTypes.func.isRequired,
   getCategoryProducts: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
@@ -110,6 +123,8 @@ Products.propTypes = {
   isNameAscending: PropTypes.bool.isRequired,
   isInRange: PropTypes.bool.isRequired,
   isClicked: PropTypes.bool.isRequired,
+  isSearch: PropTypes.bool,
+  searchTerm: PropTypes.string,
 };
 
 const stateToProps = (state) => ({
@@ -123,6 +138,7 @@ const stateToProps = (state) => ({
 });
 
 export default connect(stateToProps, {
+  searchProducts,
   getCategoryProducts,
   clickCategory,
   addToCart,

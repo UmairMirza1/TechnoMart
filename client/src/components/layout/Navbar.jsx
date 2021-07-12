@@ -1,16 +1,18 @@
-import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Fragment, useState } from "react";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // Redux
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { getCategoryProducts, clickCategory } from "../../actions/product";
-const Navbar = ({getCategoryProducts, clickCategory}) => {
 
+const Navbar = ({ getCategoryProducts, clickCategory, history }) => {
   const onClick = (category) => {
     getCategoryProducts(category);
     clickCategory();
-  }
+  };
+
+  const [search, setSearch] = useState("");
 
   return (
     <Fragment>
@@ -36,12 +38,23 @@ const Navbar = ({getCategoryProducts, clickCategory}) => {
           >
             <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
-                <form className="d-flex">
+                <form
+                  className="d-flex"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    // searchProducts(search);
+                    history.push(`/Search/${search}`);
+                    setSearch("");
+                  }}
+                >
                   <input
                     className="form-control me-2"
                     type="search"
-                    placeholder="Search"
                     aria-label="Search"
+                    name="search"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    required
                   />
                   <button className="btn btn-outline-success" type="submit">
                     Search
@@ -251,6 +264,9 @@ const Navbar = ({getCategoryProducts, clickCategory}) => {
 Navbar.propTypes = {
   getCategoryProducts: PropTypes.func.isRequired,
   clickCategory: PropTypes.func.isRequired,
-}
+};
 
-export default connect(null, {getCategoryProducts, clickCategory})(Navbar);
+export default connect(null, {
+  getCategoryProducts,
+  clickCategory,
+})(withRouter(Navbar));

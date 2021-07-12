@@ -5,6 +5,7 @@ import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
 import Category from "./components/product/Category";
 import SingleProduct from "./components/product/SingleProduct";
+import Search from "./components/product/Search";
 import Cart from "./components/product/Cart";
 
 // Redux
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/Category/:category" component={Category} />
           <Route exact path="/Product/:id" component={SingleProduct} />
+          <Route exact path="/Search/:term" component={Search} />
           <Route exact path="/Cart" component={Cart} />
         </Switch>
         <Footer />
