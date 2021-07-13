@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCategoryProducts, clickCategory } from "../../actions/product";
 
-const Navbar = ({ getCategoryProducts, clickCategory, history }) => {
+const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
   const onClick = (category) => {
     getCategoryProducts(category);
     clickCategory();
@@ -62,7 +62,16 @@ const Navbar = ({ getCategoryProducts, clickCategory, history }) => {
               </li>
               <li className="nav-item active">
                 <Link className="nav-link" to="/Cart">
-                  Cart
+                  <p style={{ margin: "0" }}>
+                    Cart{" "}
+                    <sup>
+                      {products.length > 0 && (
+                        <span className="badge bg-secondary">
+                          {products.length}
+                        </span>
+                      )}
+                    </sup>
+                  </p>
                 </Link>
               </li>
               <li className="nav-item dropdown">
@@ -263,9 +272,14 @@ const Navbar = ({ getCategoryProducts, clickCategory, history }) => {
 Navbar.propTypes = {
   getCategoryProducts: PropTypes.func.isRequired,
   clickCategory: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
 };
 
-export default connect(null, {
+const stateToProps = (state) => ({
+  products: state.cart.products,
+});
+
+export default connect(stateToProps, {
   getCategoryProducts,
   clickCategory,
 })(withRouter(Navbar));

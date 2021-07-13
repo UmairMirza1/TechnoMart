@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import ProductImage from "./ProductImage";
 
 // Redux
 import { connect } from "react-redux";
@@ -18,6 +19,7 @@ const SingleProduct = ({
   }, [getSingleProduct, match.params.id]);
 
   const [preview, setPreview] = useState(false);
+  const [toggleFullImage, setToggleFullImage] = useState(false);
 
   const cartClick = (product) => {
     const cartProduct = {
@@ -36,32 +38,45 @@ const SingleProduct = ({
     </Fragment>
   ) : (
     <Fragment>
+      {toggleFullImage && (
+        <ProductImage images={product.images} toggle={setToggleFullImage} />
+      )}
       <div className="container-fluid">
-        <div className="row" style={{ height: "100%" }}>
-          <div className="col-sm-6 text-center">
-            <div className="row" style={{ height: "50%" }}>
-              <div className="col-sm-12 product-image p-3">
-                <img
-                  src={!preview ? product.images[0].url : preview}
-                  alt={product.title}
-                />
+        <div className="row mt-2">
+          <div className="col-sm-6">
+            <div className="row">
+              <div className="col-sm-12 product-preview-col mb-2">
+                <div
+                  className="product-preview"
+                  onClick={() => setToggleFullImage(true)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img
+                    src={!preview ? product.images[0].url : preview}
+                    alt={product.title}
+                  />
+                </div>
               </div>
             </div>
-            <div className="row" style={{ height: "25%" }}>
-              <div className="col-sm-12 product-image-list">
-                {product.images.map((image) => (
-                  <img
-                    key={image._id}
-                    src={image.url}
-                    alt={product.title}
-                    onClick={() => setPreview(image.url)}
-                  />
-                ))}
+            <div className="row">
+              <div className="col-sm-12 product-list-col mb-2">
+                <div className="product-list">
+                  {product.images.map((image, index) => (
+                    <Fragment key={index}>
+                      <div
+                        className="product-list-image me-1"
+                        onClick={() => setPreview(image.url)}
+                      >
+                        <img src={image.url} alt={product.title} />
+                      </div>
+                    </Fragment>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-sm-6 text-center">
-            <h1>{product.title}</h1>
+          <div className="col-sm-6">
+            <h1 className="text-center">{product.title}</h1>
             <hr />
             <p>{product.description}</p>
             <p>In stock: {product.quantity}</p>

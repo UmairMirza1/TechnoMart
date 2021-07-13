@@ -79,14 +79,20 @@ const Products = ({
                 className="col-md-3 d-flex flex-column justify-content-center align-items-center card p-2"
                 key={product._id}
               >
-                <Link to={`/Product/${product._id}`}>
+                <Link
+                  to={`/Product/${product._id}`}
+                  style={{
+                    width: "200px",
+                    maxHeight: "200px",
+                    borderRadius: "5px",
+                  }}
+                >
                   <img
                     src={product.images[0].url}
                     alt={product.title}
                     style={{
-                      width: "200px",
-                      height: "200px",
-                      borderRadius: "5px",
+                      width: "100%",
+                      maxHeight: "100%",
                     }}
                   />
                 </Link>
