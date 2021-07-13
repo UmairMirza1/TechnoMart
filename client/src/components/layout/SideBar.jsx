@@ -3,9 +3,18 @@ import PropTypes from "prop-types";
 
 // Redux
 import { connect } from "react-redux";
-import { sortPriceAction, sortNameAction, getRangeAction } from "../../actions/filter";
+import {
+  sortPriceAction,
+  sortNameAction,
+  getRangeAction,
+} from "../../actions/filter";
 
-const SideBar = ({ sortPriceAction, sortNameAction, getRangeAction, products }) => {
+const SideBar = ({
+  sortPriceAction,
+  sortNameAction,
+  getRangeAction,
+  products,
+}) => {
   const [price, setPrice] = useState({
     text: "Price Rising",
     ascending: true,
@@ -18,12 +27,12 @@ const SideBar = ({ sortPriceAction, sortNameAction, getRangeAction, products }) 
 
   const [range, setRange] = useState({
     starting: "",
-    ending: ""
-  })
+    ending: "",
+  });
 
   const rangeChange = (e) => {
-    setRange({...range, [e.target.name]: e.target.value})
-  }
+    setRange({ ...range, [e.target.name]: e.target.value });
+  };
 
   const sortPrice = () => {
     sortPriceAction(products, price.ascending);
@@ -46,22 +55,24 @@ const SideBar = ({ sortPriceAction, sortNameAction, getRangeAction, products }) 
       setRange({
         ...range,
         starting: "0",
-      })
+      });
     }
     if (range.ending === "") {
       var max = 0;
-      products.forEach((product) => {if (product.price > max) max = product.price})
+      products.forEach((product) => {
+        if (product.price > max) max = product.price;
+      });
       setRange({
         ...range,
-        ending: max.toString()
-      })
+        ending: max.toString(),
+      });
     }
-    getRangeAction(products, range.starting, range.ending)
+    getRangeAction(products, range.starting, range.ending);
     setRange({
-        starting: "",
-        ending: ""
-      })
-  }
+      starting: "",
+      ending: "",
+    });
+  };
 
   return (
     <Fragment>
@@ -73,52 +84,68 @@ const SideBar = ({ sortPriceAction, sortNameAction, getRangeAction, products }) 
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <button className="btn btn-success" onClick={sortPrice}>
+            <button
+              className="btn btn-success mb-2"
+              onClick={sortPrice}
+              style={{ width: "100%" }}
+            >
               {price.text}
             </button>
           </div>
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <button className="btn btn-success" onClick={sortName}>
+            <button
+              className="btn btn-success mb-2"
+              onClick={sortName}
+              style={{ width: "100%" }}
+            >
               {name.text}
             </button>
           </div>
         </div>
-        <div className="row">
-          <div className="col-sm-12">
-            <p>Range</p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            getRange();
+          }}
+        >
+          <div className="row">
+            <div className="col-sm-12">
+              <label className="form-label">Range</label>
+            </div>
+            <div className="col-sm-12">
+              <input
+                type="text"
+                className="form-control text-center mb-1"
+                placeholder="Start"
+                name="starting"
+                value={range.starting}
+                onChange={(e) => rangeChange(e)}
+              />
+              <input
+                type="text"
+                className="form-control text-center mb-2"
+                placeholder="End"
+                name="ending"
+                value={range.ending}
+                onChange={(e) => rangeChange(e)}
+              />
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-6">
-            <input type="text"
-            className="text-box"
-            name="starting"
-            value={range.starting}
-            onChange={(e) => rangeChange(e)}
-            />
+          <div className="row">
+            <div className="col-sm-12">
+              <button
+                type="submit"
+                className="btn btn-outline-success"
+                style={{ width: "100%" }}
+              >
+                Search
+              </button>
+            </div>
           </div>
-          <div className="col-sm-6">
-            <input type="text"
-            className="text-box"
-            name="ending"
-            value={range.ending}
-            onChange={(e) => rangeChange(e)}
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12">
-            <button onClick={getRange} className="btn btn-success">Search</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-12">
-            <p>Brand</p>
-          </div>
-          </div>
-        </div>
+        </form>
+      </div>
     </Fragment>
   );
 };
@@ -134,6 +161,8 @@ const stateToProps = (state) => ({
   products: state.product.products,
 });
 
-export default connect(stateToProps, { sortPriceAction, sortNameAction, getRangeAction })(
-  SideBar
-);
+export default connect(stateToProps, {
+  sortPriceAction,
+  sortNameAction,
+  getRangeAction,
+})(SideBar);

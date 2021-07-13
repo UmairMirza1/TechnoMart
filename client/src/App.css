@@ -2,15 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Coda";
+  font-family: "Anonymous Pro";
 }
 
 .dropdown-menu {
   min-width: 0;
-}
-
-.text-box {
-  width: 100%;
 }
 
 .product-image {

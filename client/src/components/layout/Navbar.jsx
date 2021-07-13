@@ -42,7 +42,6 @@ const Navbar = ({ getCategoryProducts, clickCategory, history }) => {
                   className="d-flex"
                   onSubmit={(e) => {
                     e.preventDefault();
-                    // searchProducts(search);
                     history.push(`/Search/${search}`);
                     setSearch("");
                   }}

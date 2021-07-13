@@ -2,6 +2,11 @@ import { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import Products from "../product/Products";
 
+// Images
+import banner1 from "../../static/banner1.png";
+import banner2 from "../../static/banner2.png";
+import banner3 from "../../static/banner3.png";
+
 //Redux
 import { connect } from "react-redux";
 import { highlightProducts } from "../../actions/product";
@@ -51,25 +56,25 @@ const Landing = ({ highlightProducts }) => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src="https://images.pexels.com/photos/7001943/pexels-photo-7001943.jpeg"
+              src={banner1}
               className="d-block w-100"
-              alt="Deal of the Week 1"
+              alt="Banner 1"
               style={{ height: "auto", maxHeight: "500px" }}
             />
           </div>
           <div className="carousel-item">
             <img
-              src="https://images.pexels.com/photos/7666858/pexels-photo-7666858.jpeg"
+              src={banner2}
               className="d-block w-100"
-              alt="Deal of the Week 2"
+              alt="Banner 2"
               style={{ height: "auto", maxHeight: "500px" }}
             />
           </div>
           <div className="carousel-item">
             <img
-              src="https://images.pexels.com/photos/5507152/pexels-photo-5507152.jpeg"
+              src={banner3}
               className="d-block w-100"
-              alt="Deal of the Week 3"
+              alt="Banner 3"
               style={{ height: "auto", maxHeight: "500px" }}
             />
           </div>
@@ -108,7 +113,7 @@ const Landing = ({ highlightProducts }) => {
                 <h1>Highlights of the Day</h1>
               </div>
             </div>
-            <Products />
+            <Products isHighlight={true} />
             {/* <Products /> */}
           </div>
         </div>

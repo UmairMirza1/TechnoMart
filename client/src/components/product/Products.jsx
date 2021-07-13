@@ -24,11 +24,11 @@ const Products = ({
   category,
   isSearch,
   searchTerm,
+  isHighlight,
 }) => {
   useEffect(() => {
-    console.log("Called");
-    // if (!isClicked && !isSorted && isSearch) searchProducts(searchTerm);
-    if (!isClicked && !isSorted) getCategoryProducts(category);
+    if (!isClicked && !isSorted && !isSearch && !isHighlight)
+      getCategoryProducts(category);
   }, [
     searchProducts,
     getCategoryProducts,
@@ -39,6 +39,7 @@ const Products = ({
     isClicked,
     isSearch,
     searchTerm,
+    isHighlight,
   ]);
 
   const cartClick = (product) => {
@@ -63,7 +64,11 @@ const Products = ({
       {products.length === 0 ? (
         <Fragment>
           <div className="row p-3">
-            <p>There are no products in this category.</p>
+            <p>
+              {!isSearch
+                ? "There are no products in this category."
+                : "No products found."}
+            </p>
           </div>
         </Fragment>
       ) : (
@@ -125,6 +130,7 @@ Products.propTypes = {
   isClicked: PropTypes.bool.isRequired,
   isSearch: PropTypes.bool,
   searchTerm: PropTypes.string,
+  isHighlight: PropTypes.bool,
 };
 
 const stateToProps = (state) => ({

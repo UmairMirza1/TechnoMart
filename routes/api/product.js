@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const dayjs = require("dayjs");
+// dayjs().format();
 
 const {
   response,
@@ -7,6 +9,7 @@ const {
 } = require("../../utilities/serverHelper");
 
 const Product = require("../../models/Product");
+const Highlight = require("../../models/Highlight");
 
 router.post("/", async (req, res) => {
   try {
@@ -149,14 +152,54 @@ router.get("/search/:term", async (req, res) => {
 
 router.get("/highlights", async (req, res) => {
   try {
-    const products = await Product.aggregate().sample(4);
-    return response(
-      res,
-      200,
-      true,
-      `Highlights fetched successfully.`,
-      products
-    );
+    const highlight = await Highlight.findOne();
+    if (highlight.length === 0) {
+      const products = await Product.aggregate().sample(4);
+      createHighlights = {};
+      createHighlights.products = products;
+
+      let highlights = new Highlight(createHighlights);
+      await highlights.save();
+
+      return response(
+        res,
+        200,
+        true,
+        "Highlights added successfully.",
+        highlights
+      );
+    }
+    const currentDate = dayjs(new Date());
+    const highlightDate = dayjs(highlight.date);
+
+    if (currentDate.isSame(highlightDate, "day")) {
+      return response(
+        res,
+        200,
+        true,
+        "Highlights fetched successfully.",
+        highlight.products
+      );
+    }
+
+    if ((currentDate.isAfter(highlightDate), "day")) {
+      await highlight.remove();
+
+      const products = await Product.aggregate().sample(4);
+      createHighlights = {};
+      createHighlights.products = products;
+
+      let newHighlights = new Highlight(createHighlights);
+      await newHighlights.save();
+
+      return response(
+        res,
+        200,
+        true,
+        "Highlights added successfully.",
+        newHighlights.products
+      );
+    }
   } catch (error) {
     console.log(error);
     return response(res, 500, false, "Internal server error occurred.");

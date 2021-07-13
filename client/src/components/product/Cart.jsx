@@ -21,7 +21,7 @@ const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
                     <img
                       src={product.product.image}
                       alt={product.product.title}
-                      style={{ width: "100px" }}
+                      style={{ width: "100px", height: "100px" }}
                     />
                   </div>
                   <div className="col-sm-6">
@@ -41,6 +41,7 @@ const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
                         type="button"
                         className="btn btn-success mb-1"
                         onClick={() => updateQuantity(product.product, true)}
+                        style={{ width: "50px", height: "50px" }}
                       >
                         <i className="fas fa-plus"></i>
                       </button>
@@ -54,6 +55,7 @@ const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
                           type="button"
                           className="btn btn-danger"
                           onClick={() => updateQuantity(product.product, false)}
+                          style={{ width: "50px", height: "50px" }}
                         >
                           <i className="fas fa-minus"></i>
                         </button>
@@ -61,6 +63,7 @@ const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
                           type="button"
                           className="btn btn-success"
                           onClick={() => updateQuantity(product.product, true)}
+                          style={{ width: "50px", height: "50px" }}
                         >
                           <i className="fas fa-plus"></i>
                         </button>
@@ -70,13 +73,16 @@ const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
                         type="button"
                         className="btn btn-danger mb-1"
                         onClick={() => updateQuantity(product.product, false)}
+                        style={{ width: "50px", height: "50px" }}
                       >
                         <i className="fas fa-minus"></i>
                       </button>
                     )}
+                    <br />
                     <button
                       className="btn btn-danger"
                       onClick={() => removeFromCart(product)}
+                      style={{ width: "50px", height: "50px" }}
                     >
                       <i className="fas fa-trash"></i>
                     </button>
