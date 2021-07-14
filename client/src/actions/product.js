@@ -7,32 +7,6 @@ import {
   GET_PRODUCT,
 } from "./types";
 
-export const getProductsAction = (limit) => async (dispatch) => {
-  try {
-    const response = await axios.get(
-      `https://fakestoreapi.com/products?limit=${limit}`
-    );
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: response.data,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getTechnoMartProducts = () => async (dispatch) => {
-  try {
-    const response = await axios.get("http://localhost:5000/api/product/all");
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: response.data.payload,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const getCategoryProducts = (category) => async (dispatch) => {
   try {
     const response = await axios.get(

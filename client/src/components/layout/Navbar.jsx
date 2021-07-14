@@ -61,7 +61,7 @@ const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
                 </form>
               </li>
               <li className="nav-item active">
-                <Link className="nav-link" to="/Cart">
+                <Link className="nav-link" to="/Order">
                   <p style={{ margin: "0" }}>
                     Cart{" "}
                     <sup>

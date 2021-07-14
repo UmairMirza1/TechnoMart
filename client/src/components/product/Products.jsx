@@ -61,7 +61,7 @@ const Products = ({
     </Fragment>
   ) : (
     <Fragment>
-      {products.length === 0 ? (
+      {isLoaded && products.length === 0 ? (
         <Fragment>
           <div className="row p-3">
             <p>
@@ -83,18 +83,13 @@ const Products = ({
                   to={`/Product/${product._id}`}
                   style={{
                     width: "200px",
-                    maxHeight: "200px",
+                    height: "200px",
                     borderRadius: "5px",
                   }}
                 >
-                  <img
-                    src={product.images[0].url}
-                    alt={product.title}
-                    style={{
-                      width: "100%",
-                      maxHeight: "100%",
-                    }}
-                  />
+                  <div className="products-image">
+                    <img src={product.images[0].url} alt={product.title} />
+                  </div>
                 </Link>
                 <Link
                   to={`/Product/${product._id}`}

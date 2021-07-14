@@ -6,7 +6,8 @@ import Footer from "./components/layout/Footer";
 import Category from "./components/product/Category";
 import SingleProduct from "./components/product/SingleProduct";
 import Search from "./components/product/Search";
-import Cart from "./components/product/Cart";
+import Order from "./components/order/Order";
+import Payment from "./components/order/Payment";
 
 // Redux
 import { Provider } from "react-redux";
@@ -22,7 +23,8 @@ function App() {
           <Route exact path="/Category/:category" component={Category} />
           <Route exact path="/Product/:id" component={SingleProduct} />
           <Route exact path="/Search/:term" component={Search} />
-          <Route exact path="/Cart" component={Cart} />
+          <Route exact path="/Order" component={Order} />
+          <Route exact path="/Payment" component={Payment} />
         </Switch>
         <Footer />
       </Router>

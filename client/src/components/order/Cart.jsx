@@ -5,23 +5,25 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { removeFromCart, updateQuantity } from "../../actions/cart";
 
-const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
+const Cart = ({ products, removeFromCart, updateQuantity, orderComponent }) => {
   return (
     <Fragment>
       <div className="container-fluid">
-        <h1 className="text-center">Cart</h1>
         <div className="row">
-          <div className="col-sm-6">
-            <h3>Items</h3>
+          <div className="col-sm-12">
+            <h3 className="m-0">Cart</h3>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
             {products.map((product) => (
               <div className="cart-product mb-3" key={product.product.id}>
                 <hr />
                 <div className="row">
-                  <div className="col-sm-4">
+                  <div className="col-sm-4 cart-product-image">
                     <img
                       src={product.product.image}
                       alt={product.product.title}
-                      style={{ width: "100px", height: "100px" }}
                     />
                   </div>
                   <div className="col-sm-6">
@@ -35,7 +37,7 @@ const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
                     </p>
                     <p>$ {product.newPrice}</p>
                   </div>
-                  <div className="col-sm-2">
+                  <div className="col-sm-2 text-end">
                     {product.quantity === 1 ? (
                       <button
                         type="button"
@@ -91,18 +93,20 @@ const Cart = ({ products, total, updateQuantity, removeFromCart }) => {
               </div>
             ))}
           </div>
-          <div className="col-sm-6 mt-2 total">
-            <div className="row">
-              <div className="col-sm-12">
-                <h3>Total</h3>
-                <p>
-                  <b>$ {total}</b>
-                </p>
-                <button className="btn btn-primary">Checkout</button>
-              </div>
-            </div>
-          </div>
         </div>
+        {products.length === 0 ? (
+          <p>
+            {" "}
+            <b>Empty</b>
+          </p>
+        ) : (
+          <button
+            className="btn btn-success"
+            onClick={() => orderComponent("cart")}
+          >
+            Proceed to Checkout
+          </button>
+        )}
       </div>
     </Fragment>
   );
@@ -112,12 +116,7 @@ Cart.propTypes = {
   products: PropTypes.array.isRequired,
   updateQuantity: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
-  total: PropTypes.number.isRequired,
+  orderComponent: PropTypes.func.isRequired,
 };
 
-const stateToProps = (state) => ({
-  products: state.cart.products,
-  total: state.cart.total,
-});
-
-export default connect(stateToProps, { updateQuantity, removeFromCart })(Cart);
+export default connect(null, { removeFromCart, updateQuantity })(Cart);
