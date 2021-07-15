@@ -6,11 +6,21 @@ import Payment from "./Payment";
 
 // Redux
 import { connect } from "react-redux";
-import { addPayment, addShipping } from "../../actions/order";
+import { addPayment, addShipping, addOrder } from "../../actions/order";
 import Summary from "./Summary";
+import Confirmed from "./Confirmed";
 
-const Order = ({ products, total, cart, order, addShipping, addPayment }) => {
+const Order = ({
+  products,
+  total,
+  cart,
+  order,
+  addShipping,
+  addPayment,
+  addOrder,
+}) => {
   const [showComponent, setShowComponent] = useState("cart");
+  const [confirmedOrder, setConfirmOrder] = useState("");
 
   const shippingData = (shipping) => {
     addShipping(shipping, cart);
@@ -29,26 +39,29 @@ const Order = ({ products, total, cart, order, addShipping, addPayment }) => {
         setShowComponent("payment");
         break;
       case "payment":
-        setShowComponent("payment");
+        setShowComponent("review");
         break;
       default:
         setShowComponent("cart");
     }
   };
 
-  const confirmOrder = () => {
+  const confirmOrder = async () => {
     const completeOrder = {
       order,
     };
-    console.log(completeOrder);
+    const orderID = await addOrder(completeOrder);
+    orderID ? setConfirmOrder(orderID) : setConfirmOrder("0");
   };
 
-  return (
+  return confirmedOrder === "" ? (
     <Fragment>
       <div className="container-fluid mt-2">
         <div className="row">
           <div className="col-sm-6">
-            {showComponent === "cart" ? (
+            {showComponent === "review" ? (
+              <h3>Please review your order.</h3>
+            ) : showComponent === "cart" ? (
               <Cart products={products} orderComponent={orderComponent} />
             ) : showComponent === "shipping" ? (
               <Shipping
@@ -80,6 +93,10 @@ const Order = ({ products, total, cart, order, addShipping, addPayment }) => {
         </div>
       </div>
     </Fragment>
+  ) : (
+    <Fragment>
+      <Confirmed orderID={confirmedOrder} />
+    </Fragment>
   );
 };
 
@@ -90,6 +107,7 @@ Order.propTypes = {
   addShipping: PropTypes.func.isRequired,
   addPayment: PropTypes.func.isRequired,
   order: PropTypes.object.isRequired,
+  addOrder: PropTypes.func.isRequired,
 };
 
 const stateToProps = (state) => ({
@@ -99,4 +117,6 @@ const stateToProps = (state) => ({
   order: state.order,
 });
 
-export default connect(stateToProps, { addShipping, addPayment })(Order);
+export default connect(stateToProps, { addShipping, addPayment, addOrder })(
+  Order
+);

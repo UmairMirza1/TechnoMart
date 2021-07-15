@@ -1,5 +1,6 @@
 import {
   ADD_TO_CART,
+  CLEAR_CART,
   DECREASE_QUANTITY,
   INCREASE_QUANTITY,
   REMOVE_FROM_CART,
@@ -74,6 +75,9 @@ const cart = (state = initialState, action) => {
         ),
         total: state.total - payload.newPrice,
       };
+    case CLEAR_CART:
+      return initialState;
+
     default:
       return state;
   }

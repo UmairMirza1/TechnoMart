@@ -10,6 +10,7 @@ const {
 
 const Product = require("../../models/Product");
 const Highlight = require("../../models/Highlight");
+const Order = require("../../models/Order");
 
 router.post("/", async (req, res) => {
   try {
@@ -200,6 +201,21 @@ router.get("/highlights", async (req, res) => {
         newHighlights.products
       );
     }
+  } catch (error) {
+    console.log(error);
+    return response(res, 500, false, "Internal server error occurred.");
+  }
+});
+
+router.post("/order", async (req, res) => {
+  try {
+    const createOrder = {};
+    createOrder.order = req.body.order;
+
+    const order = new Order(createOrder);
+    await order.save();
+
+    return response(res, 200, true, "Order added successfully.", order._id);
   } catch (error) {
     console.log(error);
     return response(res, 500, false, "Internal server error occurred.");

@@ -78,9 +78,17 @@ const SingleProduct = ({
           <div className="col-sm-6">
             <h1 className="text-center">{product.title}</h1>
             <hr />
-            <p>{product.description}</p>
-            <p>In stock: {product.quantity}</p>
-            <p>$ {product.price}</p>
+            <p>
+              <b>Description: </b>
+              {product.description}
+            </p>
+            <p>
+              <b>In stock: </b>
+              {product.quantity}
+            </p>
+            <p>
+              <b>Price: </b>$ {product.price}
+            </p>
             <button
               className="btn btn-primary"
               onClick={() => cartClick(product)}

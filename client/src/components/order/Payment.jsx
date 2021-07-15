@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const Payment = ({ addToOrder, orderComponent }) => {
   const [paymentType, setPaymentType] = useState({
-    selected: "",
+    selected: "card",
   });
 
   const [cardDetails, setCardDetails] = useState({
@@ -136,13 +136,21 @@ const Payment = ({ addToOrder, orderComponent }) => {
           </div>
         </Fragment>
       )}
-      <button
-        className="btn btn-success mt-1"
-        type="submit"
-        form="payment-type"
-      >
-        Submit
-      </button>
+      {paymentType.selected === "card" ? (
+        number === "" || expiry === "" || cvc === "" ? (
+          <button className="btn btn-success" disabled>
+            Submit
+          </button>
+        ) : (
+          <button className="btn btn-success" type="submit" form="payment-type">
+            Submit
+          </button>
+        )
+      ) : (
+        <button className="btn btn-success" type="submit" form="payment-type">
+          Submit
+        </button>
+      )}
     </div>
   );
 };

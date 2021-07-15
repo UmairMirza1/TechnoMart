@@ -15,3 +15,7 @@ export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 export const ADD_SHIPPING = "ADD_SHIPPING";
 export const ADD_PAYMENT = "ADD_PAYMENT";
+export const ORDER_CONFIRM = "ORDER_CONFIRM";
+export const ORDER_ERROR = "ORDER_ERROR";
+export const CLEAR_CART = "CLEAR_CART";
+export const CLEAR_ORDER = "CLEAR_ORDER";

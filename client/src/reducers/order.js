@@ -1,4 +1,4 @@
-import { ADD_PAYMENT, ADD_SHIPPING } from "../actions/types";
+import { ADD_PAYMENT, ADD_SHIPPING, CLEAR_ORDER } from "../actions/types";
 
 const initialState = {
   cart: {},
@@ -37,6 +37,8 @@ const order = (state = initialState, action) => {
         ...state,
         payment: payload,
       };
+    case CLEAR_ORDER:
+      return initialState;
     default:
       return state;
   }
