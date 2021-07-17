@@ -9,9 +9,7 @@ import {
 
 export const getCategoryProducts = (category) => async (dispatch) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/api/product/category/${category}`
-    );
+    const response = await axios.get(`/api/product/category/${category}`);
     dispatch({
       type: GET_PRODUCTS,
       payload: response.data.payload,
@@ -26,9 +24,7 @@ export const getCategoryProducts = (category) => async (dispatch) => {
 
 export const getSingleProduct = (id) => async (dispatch) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/api/product/single/${id}`
-    );
+    const response = await axios.get(`/api/product/single/${id}`);
     dispatch({
       type: GET_PRODUCT,
       payload: response.data.payload,
@@ -42,9 +38,7 @@ export const getSingleProduct = (id) => async (dispatch) => {
 };
 export const searchProducts = (term) => async (dispatch) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/api/product/search/${term}`
-    );
+    const response = await axios.get(`/api/product/search/${term}`);
     dispatch({
       type: GET_PRODUCTS,
       payload: response.data.payload,
@@ -59,9 +53,7 @@ export const searchProducts = (term) => async (dispatch) => {
 
 export const highlightProducts = () => async (dispatch) => {
   try {
-    const response = await axios.get(
-      "http://localhost:5000/api/product/highlights"
-    );
+    const response = await axios.get("/api/product/highlights");
     dispatch({
       type: GET_PRODUCTS,
       payload: response.data.payload,

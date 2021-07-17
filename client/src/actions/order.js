@@ -32,11 +32,7 @@ export const addOrder = (order) => async (dispatch) => {
     },
   };
   try {
-    const response = await axios.post(
-      "http://localhost:5000/api/product/order",
-      order,
-      config
-    );
+    const response = await axios.post("/api/product/order", order, config);
     dispatch({
       type: ORDER_CONFIRM,
     });
