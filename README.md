@@ -1,3 +1,5 @@
 # TechnoMart
 
-An online store for shopping computer accessories.
+MERN stack online shopping store.
+
+https://technomart-ali.herokuapp.com/
