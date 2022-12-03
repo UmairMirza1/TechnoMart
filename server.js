@@ -23,7 +23,7 @@ app.get("/api/", (req, res) => {
 app.use("/api/product", require("./routes/api/product"));
 
 //route requests of users
-app.use("/api/user", require("./router/api/user"))
+app.use("/api/user", require("./routes/api/user"))
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
