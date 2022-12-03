@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-
+import logo from "./technomart.png"
 // Redux
 import { connect } from "react-redux";
 import { getCategoryProducts, clickCategory } from "../../actions/product";
@@ -19,7 +19,7 @@ const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
       <nav className="navbar navbar-expand-sm navbar-light bg-light fixed-top">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            TechnoMart
+            Technomart 
           </Link>
           <button
             className="navbar-toggler"

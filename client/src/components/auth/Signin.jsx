@@ -29,7 +29,7 @@ export default class SignUp extends Component {
             </button>
           </div>
           <p className="forgot-password text-right">
-            Not registered <a href="/Signup">sign up!</a>
+            Not registered <a href="/Signup">Sign up!</a>
           </p>
             </form>
           </div>
