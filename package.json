@@ -11,13 +11,20 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "cloudinary": "^1.32.0",
     "cors": "^2.8.5",
     "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-openid-connect": "^2.5.1",
-    "mongoose": "^5.13.12"
+    "express-validator": "^6.14.2",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.12",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "concurrently": "^6.3.0",
