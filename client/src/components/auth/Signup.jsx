@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 export default class SignUp extends Component {
   render() {
+    
     return (
       <div className="p-5">
         <div className="auth-wrapper">
