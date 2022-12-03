@@ -1,3 +1,5 @@
+export const LOGIN = "LOGIN";
+export const SIGNUP = "SIGNUP"
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const CLEAR_PRODUCT = "CLEAR_PRODUCT";
