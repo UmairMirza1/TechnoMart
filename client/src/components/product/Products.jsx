@@ -144,6 +144,8 @@ const stateToProps = (state) => ({
   isClicked: state.product.isClicked,
 });
 
+//state to  props picking up state 
+//then actions
 export default connect(stateToProps, {
   searchProducts,
   getCategoryProducts,

@@ -90,12 +90,12 @@ const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <Link className="dropdown-item" to="#">
+                    <Link className="dropdown-item" to="/Signin">
                       Sign In
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="#">
+                    <Link className="dropdown-item" to="/Signup">
                       Sign Up
                     </Link>
                   </li>
@@ -215,7 +215,21 @@ const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
               >
                 Speakers
               </Link>
+              
             </li>
+            <li onClick={(e) => onClick("Headphones")}>
+              <Link
+                className="dropdown-item"
+                to={{
+                  pathname: "/Category/Headphones",
+                  state: "Headphones",
+                }}
+              >
+                Headphones
+              </Link>
+              
+            </li>
+
             <li onClick={(e) => onClick("Mice")}>
               <Link
                 className="dropdown-item"

@@ -44,6 +44,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+//quantity update==
 router.post("/quantity", async (req, res) => {
   const product = await Product.findOne({ title: req.body.title });
   const before = product.quantity;
@@ -154,7 +155,9 @@ router.get("/search/:term", async (req, res) => {
 router.get("/highlights", async (req, res) => {
   try {
     const highlight = await Highlight.findOne();
-    if (highlight.length === 0) {
+    console.log("highlight1", highlight);
+    if (highlight.length === 0 || !highlight) {
+      console.log("highlight1", highlight);
       const products = await Product.aggregate().sample(4);
       createHighlights = {};
       createHighlights.products = products;

@@ -4,6 +4,7 @@ import SideBar from "../layout/SideBar";
 import Products from "./Products";
 
 const Category = () => {
+  
   const location = useLocation();
   const categoryLocation = location.state;
   const [category, setCategory] = useState("");

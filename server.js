@@ -14,11 +14,15 @@ connectDB();
 
 app.use(express.json({ extended: false, limit: "50mb" }));
 
+//test
 app.get("/api/", (req, res) => {
   res.send("Hello");
 });
 
+//route the requests
 app.use("/api/product", require("./routes/api/product"));
+
+//
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

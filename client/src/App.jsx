@@ -8,7 +8,8 @@ import SingleProduct from "./components/product/SingleProduct";
 import Search from "./components/product/Search";
 import Order from "./components/order/Order";
 import Payment from "./components/order/Payment";
-
+import Signup from "./components/auth/Signup";
+import Signin  from "./components/auth/Signin";
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -25,6 +26,8 @@ function App() {
           <Route exact path="/Search/:term" component={Search} />
           <Route exact path="/Order" component={Order} />
           <Route exact path="/Payment" component={Payment} />
+          <Route exact path="/Signin" component={Signin} />
+          <Route exact path="/Signup" component={Signup} />
         </Switch>
         <Footer />
       </Router>

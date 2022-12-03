@@ -10,18 +10,8 @@
     "app": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AliShahrose/TechnoMart.git"
-  },
-  "author": "AliShahrose",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/AliShahrose/TechnoMart/issues"
-  },
-  "homepage": "https://github.com/AliShahrose/TechnoMart#readme",
   "dependencies": {
-    "cloudinary": "^1.27.1",
+    "cloudinary": "^1.32.0",
     "cors": "^2.8.5",
     "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
