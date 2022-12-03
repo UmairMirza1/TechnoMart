@@ -1,0 +1,4 @@
+Add login
+Add signup
+Add cookies to retain cart
+Call the API to rermove the quantity
