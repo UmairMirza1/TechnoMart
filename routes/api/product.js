@@ -155,7 +155,7 @@ router.get("/search/:term", async (req, res) => {
 router.get("/highlights", async (req, res) => {
   try {
     const highlight = await Highlight.findOne();
-    console.log("highlight1", highlight);
+    //console.log("highlight1", highlight);
     if (highlight.length === 0 || !highlight) {
       console.log("highlight1", highlight);
       const products = await Product.aggregate().sample(4);
