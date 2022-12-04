@@ -4,13 +4,15 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-
+// for the CORS policy 
 app.use(
   cors({
     origin: "*",
   })
 );
 connectDB();
+
+// Let express know you are passing json
 
 app.use(express.json({ extended: false, limit: "50mb" }));
 
