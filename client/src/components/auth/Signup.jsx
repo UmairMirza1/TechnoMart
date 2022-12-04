@@ -1,53 +1,76 @@
 import React, { Component } from 'react'
-export default class SignUp extends Component {
-  render() {
+import { useState } from 'react'
+import "../styles.css"
+import axios from "axios"
+
+function SignUp() {
+	//const history = useHistory()
+
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	async function registerUser(event) {
+		event.preventDefault()
+ 
+		const response = await fetch('http://localhost:1337/api/register', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			}, 
+			body: JSON.stringify({
+				name,
+				email,
+				password,
+			}),
+		})
+
+		const data = await response.json()
+
+		// if (data.status === 'ok') {
+		// 	history.push('/login')
+		// }
+	}
+
+	return (
+		<div id="login-box">
+  <div class="left">
+    <h1>Sign up</h1>
+    <form onSubmit={registerUser}>
+    <input type="text" 
+    name="username"
+    onChange={(e) => setName(e.target.value)}
+    placeholder="Username" />
+
+    <input type="text"
+     name="email"
+    onChange={(e) => setEmail(e.target.value)}
+    placeholder="E-mail" />
+
+
+
+
+    <input type="password" name="password" 
+    onChange={(e) => setPassword(e.target.value)}
+    placeholder="Password" />
+
+    <input type="password" name="password2" placeholder="Retype password" />
+    <input type="submit" name="signup_submit" value="Register" />
+
+</form>
+
+  </div>
+  
+  <div class="right">
+    <span class="loginwith">Sign in with<br />social network</span>
     
-    return (
-      <div className="p-5">
-        <div className="auth-wrapper">
-          <div className="auth-inner">
-            <form>
-          <h3>Sign Up</h3>
-          <div className="mb-3">
-            <label>First name</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="First name"
-            />
-          </div>
-          <div className="mb-3">
-            <label>Last name</label>
-            <input type="text" className="form-control" placeholder="Last name" />
-          </div>
-          <div className="mb-3">
-            <label>Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Enter email"
-            />
-          </div>
-          <div className="mb-3">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter password"
-            />
-          </div>
-          <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
-              Sign Up
-            </button>
-          </div>
-          <p className="forgot-password text-right">
-            Already registered <a href="/Signin">sign in?</a>
-          </p>
-            </form>
-          </div>
-        </div>
-      </div>
-    )
-  }
+    <button class="social-signin facebook">Sign up with facebook</button>
+    <button class="social-signin twitter">Sign up with Twitter</button>
+    <button class="social-signin google">Sign up with Google+</button>
+  </div>
+  <div class="or">OR</div>
+</div>
+	)
 }
+
+export default SignUp
