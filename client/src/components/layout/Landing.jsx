@@ -15,6 +15,7 @@ const Landing = ({ highlightProducts }) => {
   useEffect(() => {
     highlightProducts();
   }, [highlightProducts]);
+
   return (
     <Fragment>
       {/* Welcome */}

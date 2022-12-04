@@ -45,10 +45,11 @@ router.post("/signin", async (req, res) => {
   console.log(email, password);
 
   let user = await User.findOne({ email });
+
   console.log(user);
   if (user) {
     if (user.password == password) {
-      return response(res, 200, true, `signed in successfully.`);
+      return response(res, 200, true, `signed in successfully.`, user);
     } else {
       return response(res, 400, false, `email or pass incorrect`);
     }

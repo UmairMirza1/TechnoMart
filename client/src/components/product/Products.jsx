@@ -134,6 +134,7 @@ Products.propTypes = {
   isHighlight: PropTypes.bool,
 };
 
+//bp
 const stateToProps = (state) => ({
   products: state.product.products,
   isLoaded: state.product.isLoaded,
@@ -144,8 +145,9 @@ const stateToProps = (state) => ({
   isClicked: state.product.isClicked,
 });
 
-//state to  props picking up state 
+//state to  props picking up state
 //then actions
+//connect ==> redux specific
 export default connect(stateToProps, {
   searchProducts,
   getCategoryProducts,

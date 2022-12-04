@@ -1,7 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import logo from "./technomart.png"
+import logo from "./technomart.png";
 // Redux
 import { connect } from "react-redux";
 import { getCategoryProducts, clickCategory } from "../../actions/product";
@@ -13,13 +13,24 @@ const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
   };
 
   const [search, setSearch] = useState("");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const _user = localStorage.getItem("User");
+    setUser(JSON.parse(_user));
+  }, []);
+
+  const signout = () => {
+    localStorage.removeItem("User");
+    window.location.reload();
+  };
 
   return (
     <Fragment>
       <nav className="navbar navbar-expand-sm navbar-light bg-light fixed-top">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            Technomart 
+            Technomart
           </Link>
           <button
             className="navbar-toggler"
@@ -83,22 +94,39 @@ const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Account
+                  {user ? <>{user.name}</> : <>Account</>}
                 </Link>
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <li>
-                    <Link className="dropdown-item" to="/Signin">
-                      Sign In
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/Signup">
-                      Sign Up
-                    </Link>
-                  </li>
+                  {user ? (
+                    <>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          to="#"
+                          onClick={signout}
+                        >
+                          Signout
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <li>
+                        <Link className="dropdown-item" to="/Signin">
+                          Sign In
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" to="/Signup">
+                          Sign Up
+                        </Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </li>
             </ul>
@@ -215,7 +243,6 @@ const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
               >
                 Speakers
               </Link>
-              
             </li>
             <li onClick={(e) => onClick("Headphones")}>
               <Link
@@ -227,7 +254,6 @@ const Navbar = ({ getCategoryProducts, clickCategory, products, history }) => {
               >
                 Headphones
               </Link>
-              
             </li>
 
             <li onClick={(e) => onClick("Mice")}>

@@ -25,7 +25,9 @@ export default function Signin() {
     const data = await response.json();
 
     if (data.success) {
+      localStorage.setItem("User", JSON.stringify(data.payload));
       history.push("/");
+      window.location.reload();
     } else {
       setEmail("");
       setPassword("");
